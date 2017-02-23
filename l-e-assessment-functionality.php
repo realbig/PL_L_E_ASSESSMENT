@@ -33,6 +33,12 @@ if ( ! class_exists( 'L_E_Assessment_Functionality' ) ) {
 		public $admin;
 		
 		/**
+		 * @var			L_E_Assessment_Functionality $front Frontend Functionality
+		 * @since		1.0.0
+		 */
+		public $front;
+		
+		/**
 		 * @var			L_E_Assessment_Functionality $admin_errors Stores all our Admin Errors to fire at once
 		 * @since		1.0.0
 		 */
@@ -161,8 +167,14 @@ if ( ! class_exists( 'L_E_Assessment_Functionality' ) ) {
 			
 			if ( is_admin() ) {
 				
-				require_once L_E_Assessment_Functionality_DIR . '/core/admin/l-e-assessment-functionality-admin.php';
+				require_once L_E_Assessment_Functionality_DIR . 'core/admin/l-e-assessment-functionality-admin.php';
 				$this->admin = new L_E_Assessment_Functionality_Admin();
+				
+			}
+			else {
+				
+				require_once L_E_Assessment_Functionality_DIR . 'core/front/l-e-assessment-functionality-front.php';
+				$this->front = new L_E_Assessment_Functionality_Front();
 				
 			}
 			

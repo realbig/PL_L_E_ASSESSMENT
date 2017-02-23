@@ -22,7 +22,7 @@ class L_E_Assessment_Functionality_Admin {
 		$current_roles = wp_get_current_user()->roles;
 		
 		// Allow multiple different User Roles to be prevented from viewing their own Quiz results on their Profile Screen
-		$restricted_roles = apply_filters( 'l-e-assessment-restricted-quiz-results', array(
+		$restricted_roles = apply_filters( 'l-e-assessment-restricted', array(
 			'subscriber',
 		) );
 		
