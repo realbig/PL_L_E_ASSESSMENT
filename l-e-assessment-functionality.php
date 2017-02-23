@@ -223,6 +223,8 @@ if ( ! class_exists( 'L_E_Assessment_Functionality' ) ) {
 	
 } // End Class Exists Check
 
+require_once __DIR__ . '/core/l-e-assessment-functionality-functions.php';
+
 /**
  * The main function responsible for returning the one true L_E_Assessment_Functionality
  * instance to functions everywhere
@@ -232,8 +234,7 @@ if ( ! class_exists( 'L_E_Assessment_Functionality' ) ) {
  */
 add_action( 'init', 'l_e_assessment_functionality_load' );
 function l_e_assessment_functionality_load() {
-
-	require_once __DIR__ . '/core/l-e-assessment-functionality-functions.php';
+	
 	LEASSESSMENTFUNCTIONALITY();
 
 }
