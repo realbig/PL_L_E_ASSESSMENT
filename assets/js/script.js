@@ -1,0 +1,2 @@
+"use strict";!function(n){n(document).ready(function(){function t(t){t.each(function(t,i){n(i).find(".wpProQuiz_sortable").each(function(t,i){n(i).find(".index").length>0?n(i).find(".index").html(t+1+". "):n(i).prepend('<span class="index">'+(t+1)+". </span>"),n(i).attr("data-currentindex",t+1)})})}if(n("#wpProQuiz_1").length>0){var i=n("#wpProQuiz_1 .wpProQuiz_sortable").parents("ul");setTimeout(function(){t(i)},100),i.on("sortstop",function(n,e){t(i)})}})}(jQuery);
+//# sourceMappingURL=script.js.map

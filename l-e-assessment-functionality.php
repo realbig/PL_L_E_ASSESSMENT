@@ -71,7 +71,7 @@ if ( ! class_exists( 'L_E_Assessment_Functionality' ) ) {
 			$this->require_necessities();
 			
 			// Register our CSS/JS for the whole plugin
-			add_action( 'init', array( $this, 'register_scripts' ) );
+			$this->register_scripts();
 			
 		}
 
@@ -227,6 +227,27 @@ if ( ! class_exists( 'L_E_Assessment_Functionality' ) ) {
 				L_E_Assessment_Functionality_ID . '-admin',
 				'lEAssessmentFunctionality',
 				apply_filters( 'l_e_assessment_functionality_localize_admin_script', array() )
+			);
+			
+			wp_register_style(
+				L_E_Assessment_Functionality_ID . '-front',
+				L_E_Assessment_Functionality_URL . 'assets/css/style.css',
+				null,
+				defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : L_E_Assessment_Functionality_VER
+			);
+			
+			wp_register_script(
+				L_E_Assessment_Functionality_ID . '-front',
+				L_E_Assessment_Functionality_URL . 'assets/js/script.js',
+				array( 'jquery' ),
+				defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : L_E_Assessment_Functionality_VER,
+				true
+			);
+			
+			wp_localize_script( 
+				L_E_Assessment_Functionality_ID . '-front',
+				'lEAssessmentFunctionality',
+				apply_filters( 'l_e_assessment_functionality_localize_front_script', array() )
 			);
 			
 		}

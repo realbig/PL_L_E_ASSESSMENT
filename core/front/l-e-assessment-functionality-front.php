@@ -22,6 +22,8 @@ class L_E_Assessment_Functionality_Front {
 		add_action( 'show_admin_bar', array( $this, 'remove_admin_bar' ) );
 		
 		add_filter( 'login_redirect', array( $this, 'login_redirect' ), 10, 3 );
+		
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 
 	}
 	
@@ -82,6 +84,12 @@ class L_E_Assessment_Functionality_Front {
 		}
 		
 		return $redirect_to;
+		
+	}
+	
+	public function wp_enqueue_scripts() {
+		
+		wp_enqueue_script( L_E_Assessment_Functionality_ID . '-front' );
 		
 	}
 
