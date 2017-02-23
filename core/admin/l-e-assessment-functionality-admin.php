@@ -40,6 +40,8 @@ class L_E_Assessment_Functionality_Admin {
 			}
 			
 		}
+		
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
 	}
 
@@ -139,6 +141,18 @@ class L_E_Assessment_Functionality_Admin {
 	 */
 	public function remove_class_action( $tag, $class_name = '', $method_name = '', $priority = 10 ) {
 		$this->remove_class_filter( $tag, $class_name, $method_name, $priority );
+	}
+	
+	public function admin_enqueue_scripts() {
+		
+		global $current_screen;
+		
+		if ( $current_screen->id == 'admin_page_ldAdvQuiz' ) {
+			
+			wp_enqueue_script( L_E_Assessment_Functionality_ID . '-admin' );
+			
+		}
+		
 	}
 
 }
