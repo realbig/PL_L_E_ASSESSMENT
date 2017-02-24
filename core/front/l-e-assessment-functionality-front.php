@@ -89,6 +89,8 @@ class L_E_Assessment_Functionality_Front {
 	
 	public function wp_enqueue_scripts() {
 		
+		wp_enqueue_style( L_E_Assessment_Functionality_ID . '-front' );
+		
 		wp_enqueue_script( L_E_Assessment_Functionality_ID . '-front' );
 		
 	}
