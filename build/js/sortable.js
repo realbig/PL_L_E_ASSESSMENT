@@ -27,9 +27,11 @@
 			
 			var $sortable = $( '#wpProQuiz_1 .wpProQuiz_sortable' ).parents( 'ul' );
 			
-			setTimeout( function() {
-				reindexSortable( $sortable )
-			}, 100 );
+			$sortable.on( 'sortcreate', function( event, ui ) {
+				setTimeout( function() {
+					reindexSortable( $sortable );
+				}, 100 );
+			} );
 			
 			$sortable.on( 'sortstop', function( event, ui ) {
 				reindexSortable( $sortable );
