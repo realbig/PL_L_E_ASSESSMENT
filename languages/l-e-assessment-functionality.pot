@@ -14,18 +14,22 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/l-e-assessment-functionality-functions.php:90
+#: core/l-e-assessment-functionality-functions.php:102
 msgid "The HR department at L&E Research is excited to have you as an applicant."
 msgstr ""
 
-#: core/l-e-assessment-functionality-functions.php:91
-msgid "To take the Assessment, visit the following address to create a password:"
+#: core/l-e-assessment-functionality-functions.php:103
+msgid "To take the Assessment, visit the following address and enter your username and password:"
 msgstr ""
 
-#: core/l-e-assessment-functionality-functions.php:93
+#: core/l-e-assessment-functionality-functions.php:105
 msgid "Your Username is: %s"
 msgstr ""
 
-#: core/l-e-assessment-functionality-functions.php:95
+#: core/l-e-assessment-functionality-functions.php:106
+msgid "Your Password is: %s"
+msgstr ""
+
+#: core/l-e-assessment-functionality-functions.php:108
 msgid "[%s] Assessment Access"
 msgstr ""
