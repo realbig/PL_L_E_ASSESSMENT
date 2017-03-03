@@ -86,13 +86,46 @@ if ( ! function_exists( 'wp_new_user_notification' ) ) {
 		$wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user->user_login ) );
 
 		$switched_locale = switch_to_locale( get_user_locale( $user ) );
+		
+		$current_roles = $user->roles;
+		
+		// Allow multiple different User Roles to be prevented from viewing their own Quiz results on their Profile Screen
+		$restricted_roles = apply_filters( 'l-e-assessment-restricted', array(
+			'subscriber',
+		) );
+		
+		$sent = false;
+		foreach( $restricted_roles as $role ) {
+			
+			if ( in_array( $role, $current_roles ) ) {
+				
+				$message = __( 'The HR department at L&E Research is excited to have you as an applicant.', L_E_Assessment_Functionality_ID ) . "\r\n\r\n";
+				$message .= __( 'To take the Assessment, visit the following address and enter your username and password:', L_E_Assessment_Functionality_ID ) . "\r\n\r\n";
+				$message .= '<' . network_site_url('wp-admin/') . ">\r\n\r\n";
+				$message .= sprintf( __( 'Your Username is: %s', L_E_Assessment_Functionality_ID ), $user->user_login) . "\r\n\r\n";
+				$message .= sprintf( __( 'Your Password is: %s', L_E_Assessment_Functionality_ID ), $_POST['pass1']) . "\r\n\r\n";
 
-		$message = __( 'The HR department at L&E Research is excited to have you as an applicant.', L_E_Assessment_Functionality_ID ) . "\r\n\r\n";
-		$message .= __( 'To take the Assessment, visit the following address to create a password:', L_E_Assessment_Functionality_ID ) . "\r\n\r\n";
-		$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login') . ">\r\n\r\n";
-		$message .= sprintf( __( 'Your Username is: %s', L_E_Assessment_Functionality_ID ), $user->user_login) . "\r\n\r\n";
+				wp_mail($user->user_email, sprintf( __( '[%s] Assessment Access', L_E_Assessment_Functionality_ID ), $blogname), $message);
+				
+				$sent = true;
+				
+				break;
+				
+			}
+			
+		}
+		
+		if ( ! $sent ) {
+		
+			$message = sprintf(__('Username: %s'), $user->user_login) . "\r\n\r\n";
+			$message .= __('To set your password, visit the following address:') . "\r\n\r\n";
+			$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login') . ">\r\n\r\n";
 
-		wp_mail($user->user_email, sprintf( __( '[%s] Assessment Access', L_E_Assessment_Functionality_ID ), $blogname), $message);
+			$message .= wp_login_url() . "\r\n";
+
+			wp_mail($user->user_email, sprintf(__('[%s] Your username and password info'), $blogname), $message);
+			
+		}
 
 		if ( $switched_locale ) {
 			restore_previous_locale();
