@@ -2,7 +2,7 @@
 /*
 Plugin Name: L&E Assessment Functionality
 Description: Adds some additional functionality for the L&E Assessment
-Version: 0.3.0
+Version: 0.3.1
 Text Domain: l-e-assessment-functionality
 Author: Eric Defore
 Author URL: https://realbigmarketing.com/
